@@ -23,4 +23,4 @@ Set these environment variables for Production in Vercel:
 - `CSRF_TRUSTED_ORIGINS`: `https://<your-project>.vercel.app` and any custom domain
 - `DATABASE_URL`: a managed PostgreSQL connection URL
 
-Run `python manage.py migrate` against the managed PostgreSQL database before using the deployed store. Vercel's function filesystem is read-only apart from temporary storage, so the local SQLite database is for development only; do not deploy it as the production database. The Git ignore rules exclude the local database and virtual environment.
+Run `python manage.py migrate` against the managed PostgreSQL database before using the deployed store. Production startup requires `DATABASE_URL`; Vercel's function filesystem is read-only apart from temporary storage, so SQLite is development-only. The Git ignore rules exclude the local database and virtual environment.
