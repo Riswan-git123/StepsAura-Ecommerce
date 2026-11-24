@@ -106,57 +106,66 @@ function setupContactForm() {
 
 //  FETCH WORKINGS ARE HERE
 
-function check(e,product_id,action){
-    e.preventDefault()
-    let datas=document.getElementsByName('csrfmiddlewaretoken')[0].value
-    let details={id:product_id,action:action}
-    console.log("check Function is called");
-    
-
-    fetch("/",{
+async function check(e,product_id,action){
+    e.preventDefault();
+    const form=e.currentTarget;
+    const csrf=form.querySelector('[name="csrfmiddlewaretoken"]').value;
+    const button=form.querySelector('button[type="submit"]');
+    if(button) button.disabled=true;
+    try {
+        const response=await fetch("/",{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
-            "X-CSRFToken":datas
+            "X-CSRFToken":csrf
         },
-        body:JSON.stringify(details)
-    }).then(response => response.json())
-    .then(data => {
-        document.getElementById('cart_count').innerHTML=data.count
-          
-    })
-   
-    
+        body:JSON.stringify({id:product_id,action:action})
+        });
+        const data=await response.json();
+        if(!response.ok) throw new Error(data.message || "Could not add this item to your cart.");
+        const badge=document.getElementById('cart_count');
+        if(badge) badge.textContent=data.count;
+    } catch(error) {
+        window.alert(error.message || "Could not add this item to your cart. Please try again.");
+    } finally {
+        if(button) button.disabled=false;
+    }
 }
 
 
 
 
 
-function removes(e,cart_id){
-    e.preventDefault()
-    let csrf=document.getElementsByName('csrfmiddlewaretoken')[0].value
-    let details={id:cart_id}
-    console.log("remove function called");
-    fetch("http://127.0.0.1:8000/store/cart/",{
+async function removes(e,cart_id){
+    e.preventDefault();
+    const form=e.currentTarget;
+    const csrf=form.querySelector('[name="csrfmiddlewaretoken"]').value;
+    const button=form.querySelector('button[type="submit"]');
+    if(button) button.disabled=true;
+    try {
+        const response=await fetch(window.location.pathname,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
             "X-CSRFToken":csrf
         },
-        body:JSON.stringify(details)
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('cart-'+ cart_id ).remove()
-        if(data.empty){
-            document.getElementById('empty_cart').hidden=false
-        }
-        document.getElementById('total').innerHTML=data.total
-        document.getElementById('cart_count').innerHTML=data.count
-    })
-   
-    
+        body:JSON.stringify({id:cart_id})
+        });
+        const data=await response.json();
+        if(!response.ok) throw new Error(data.message || "Could not remove this item.");
+        const row=document.getElementById('cart-'+cart_id);
+        if(row) row.remove();
+        const emptyCart=document.getElementById('empty_cart');
+        if(emptyCart) emptyCart.hidden=!data.empty;
+        const total=document.getElementById('total');
+        if(total) total.textContent=data.total;
+        const badge=document.getElementById('cart_count');
+        if(badge) badge.textContent=data.count;
+    } catch(error) {
+        window.alert(error.message || "Could not remove this item. Please try again.");
+    } finally {
+        if(button) button.disabled=false;
+    }
 }
 
 

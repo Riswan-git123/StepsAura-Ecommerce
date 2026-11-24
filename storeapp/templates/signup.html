@@ -11,13 +11,13 @@
 <body class="auth-page">
   <header class="site-header">
     <nav class="navbar container py-3">
-      <a class="navbar-brand fw-bold" href="/">BLOOM<span>SHOP</span></a>
-      <a class="link-secondary text-decoration-none" href="/sign-in/">Already a member? <strong class="text-dark">Sign in</strong></a>
+      <a class="navbar-brand fw-bold" href="{% url 'home' %}">STEPS<span>AURA</span></a>
+      <a class="link-secondary text-decoration-none" href="{% url 'login' %}">Already a member? <strong class="text-dark">Sign in</strong></a>
     </nav>
   </header>
   <main class="auth-main container py-5">
     <section class="auth-card mx-auto">
-      <a class="auth-back" href="/">← Back to shop</a>
+      <a class="auth-back" href="{% url 'home' %}">← Back to shop</a>
       <span class="eyebrow d-block mt-4">JOIN THE COMMUNITY</span>
       <h1 class="h2 fw-bold mt-2">Create your account</h1>
       <p class="text-secondary mb-4">Save your favorites and make checkout a little easier.</p>

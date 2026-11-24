@@ -17,3 +17,4 @@ class Contact(models.Model):
 class Cart_item(models.Model):
     product=models.ForeignKey(Products,on_delete=models.CASCADE)
     quantity=models.IntegerField(default=1)
+    session_key=models.CharField(max_length=40,blank=True,default="",db_index=True)

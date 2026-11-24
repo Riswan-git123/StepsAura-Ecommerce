@@ -11,12 +11,12 @@
 <body class="auth-page">
   <header class="site-header">
     <nav class="navbar container py-3">
-      <a class="navbar-brand fw-bold" href="/">BLOOM<span>SHOP</span></a>
+      <a class="navbar-brand fw-bold" href="{% url 'home' %}">STEPS<span>AURA</span></a>
     </nav>
   </header>
   <main class="auth-main container py-5">
     <section class="auth-card mx-auto">
-      <a class="auth-back" href="/">← Back to shop</a>
+      <a class="auth-back" href="{% url 'home' %}">← Back to shop</a>
       <span class="eyebrow d-block mt-4">WELCOME BACK</span>
       <h1 class="h2 fw-bold mt-2">Sign in to BloomShop</h1>
       <p class="text-secondary mb-4">Pick up where you left off and find your next favorite pair.</p>
@@ -33,7 +33,7 @@
         <button class="btn btn-warning rounded-pill w-100 mt-4 py-2" type="submit">Sign in</button>
         <p class="auth-feedback small mt-3 mb-0" id="auth-feedback" role="status" aria-live="polite"></p>
       </form>
-      <p class="text-center text-secondary mt-4 mb-0">Don’t have an account? <a class="auth-small-link fw-semibold" href="/sign-up/">Create account</a></p>
+      <p class="text-center text-secondary mt-4 mb-0">Don’t have an account? <a class="auth-small-link fw-semibold" href="{% url 'signup' %}">Create account</a></p>
       <p class="auth-note small text-center mt-4 mb-0">Demo storefront · account access is not connected to a server.</p>
     </section>
   </main>

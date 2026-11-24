@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name="home"),
     path("store/",include('storeapp.urls')),
-    path("cart_item/<int:id>/",views.cart_item,name="cart_item"),
+    path("cart_item/<int:product_id>/",views.cart_item,name="cart_item"),
     # path("cart_remove/<int:id>/",views.cart_remove,name="cart_remove"),
     path("order_placed",views.order_placed,name="order_placed"),
 ]
