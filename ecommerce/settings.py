@@ -84,6 +84,8 @@ else:
 if not DEBUG:
     if SECRET_KEY == 'stepsaura-insecure-local-development-key':
         raise ValueError('Set DJANGO_SECRET_KEY in production.')
+    if not DATABASE_URL:
+        raise ValueError('Set DATABASE_URL to a persistent PostgreSQL database in production.')
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
