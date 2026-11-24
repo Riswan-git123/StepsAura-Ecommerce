@@ -6,7 +6,7 @@ StepsAura is a Django shoe store application.
 
 1. Create and activate a Python virtual environment.
 2. Install dependencies with `python -m pip install -r requirements.txt`.
-3. Copy `.env.example` to `.env` and set a private `DJANGO_SECRET_KEY` (the app loads `.env` locally).
+3. Set `DJANGO_SECRET_KEY` and any other values from `.env.example` in your shell or IDE environment.
 4. Run `python manage.py migrate` and `python manage.py runserver`.
 
 The storefront inserts its catalog from `storeapp/collections.py` when the home page is first opened.
