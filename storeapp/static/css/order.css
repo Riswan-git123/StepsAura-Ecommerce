@@ -1,0 +1,157 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+:root {
+  color-scheme: light;
+  --ink: #171a1c;
+  --green: #25a928;
+  --cream: #f5f5f2;
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.confirmation {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  width: min(100%, 560px);
+  padding: 30px 58px 36px;
+  border: 1px solid #e7e8e3;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 22px 70px #2027240c;
+  text-align: center;
+  animation: card-in .55s both cubic-bezier(.2, .8, .2, 1);
+}
+
+.success-art {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 12px;
+}
+
+.success-mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.success-ring {
+  fill: none;
+  stroke: #20d33b;
+  stroke-width: 3;
+  stroke-dasharray: 390;
+  stroke-dashoffset: 390;
+  animation: ring-draw .8s ease-out .05s forwards;
+}
+
+.success-disc {
+  fill: var(--green);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(.7);
+  opacity: 0;
+  animation: disc-pop .35s ease-out .55s forwards;
+}
+
+.success-check {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 52;
+  stroke-dashoffset: 52;
+  animation: check-draw .3s ease-out .84s forwards;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #687b32;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+  font-weight: 600;
+}
+
+h1 em {
+  color: #526c1a;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+}
+
+@keyframes ring-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes disc-pop {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes check-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes card-in {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: 26px 22px 30px;
+  }
+
+  .success-art {
+    width: 144px;
+    height: 144px;
+  }
+
+  h1 {
+    font-size: 29px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .success-ring { stroke-dashoffset: 0; }
+  .success-disc { transform: scale(1); opacity: 1; }
+  .success-check { stroke-dashoffset: 0; }
+}
